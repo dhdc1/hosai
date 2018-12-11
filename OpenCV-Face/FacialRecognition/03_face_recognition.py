@@ -11,6 +11,7 @@ Developed by Marcelo Rovai - MJRoBot.org @ 21Feb18
 import cv2
 import numpy as np
 import os
+import winsound
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 recognizer.read('trainer/trainer.yml')
@@ -58,6 +59,7 @@ while True:
         if (confidence < 100):
 
             print("detect", id)
+            #winsound.Beep(1000, 500)
 
             id = names[id]
 
@@ -67,7 +69,7 @@ while True:
             confidence = "  {0}%".format(round(100 - confidence))
 
         cv2.putText(img, str(id), (x + 5, y - 5), font, 1, (255, 255, 255), 2)
-        cv2.putText(img, str(confidence), (x + 5, y + h - 5), font, 1, (255, 255, 0), 1)
+        # cv2.putText(img, str(confidence), (x + 5, y + h - 5), font, 0.7, (255, 255, 0), 1)
 
     cv2.imshow('camera', img)
 
